@@ -1,19 +1,12 @@
 import discord
 from boto.s3.connection import S3Connection
 s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+from discord.ext import commands
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='>')
 
-@client.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+@bot.command()
+async def ping(ctx):
+    await ctx.send('pong')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
-
-client.run(token)
+bot.run('NTU2OTQ2MDQ2Njc3NDE4MDA1.XI62bQ.mizsKEBOeMF-HTrVq_IrIiPO4g4')
