@@ -1,3 +1,4 @@
+print("ass")
 import discord
 from boto.s3.connection import S3Connection
 s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
