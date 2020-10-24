@@ -10,3 +10,5 @@ async def ping(ctx):
     await ctx.send('pong')
 
 bot.run(os.environ['token'])
+print("on")
+print(os.environ['token'])
