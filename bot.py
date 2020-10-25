@@ -9,6 +9,7 @@ url = "https://www.pornhub.com/model/"
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you horny retards :( ~help"))
 
     
     async def on_message(self, message):
@@ -25,6 +26,11 @@ class MyClient(discord.Client):
         message.content=message.content[1:len(message.content)].lower()
         args = message.content.split(" ")
 
+	if args[0] == "help":
+            embedVar = discord.Embed(title="Commands", color=0xffffff)
+            embedVar.add_field(name="NSFW", value="```r34 [tag] \nmodel [phub model]```", inline=False)
+            await message.channel.send(embed=embedVar)
+	
         if args[0] == 'model':
             url = "https://www.pornhub.com/model/"+args[1]+"/videos"
             await message.channel.send(url)
