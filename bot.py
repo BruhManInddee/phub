@@ -58,6 +58,34 @@ class MyClient(discord.Client):
                                         await msg.add_reaction("➕")
                                         return
 
+        if args[0] == "danbooru":
+            num=0
+            url = "https://danbooru.donmai.us/posts?tags="+args[1]
+            response = requests.get(url)
+            html = response.text
+
+            soup = BeautifulSoup(html, "html.parser")
+            links = soup.findAll("img")
+            for link in links:
+                href = str(link.parent.parent.get("href"))
+                print(href)
+                url = "https://danbooru.donmai.us/"+href
+                response = requests.get(url)
+                html = response.text
+                soup = BeautifulSoup(html, "html.parser")
+                links = soup.findAll("img")
+                for link in links:
+                        if str(link.get("id")) == "image":
+                            src = str(link.get("src"))
+                            if src.startswith("https://"):
+                                num+=1
+                                print(num)
+                                await message.channel.send(src)
+                                if num==6:
+                                    msg = await message.channel.send("first 6 danbooru results for "+args[1])
+                                    await msg.add_reaction("➕")
+                                    return
+
         if args[0] == "help":
             embedVar = discord.Embed(title="Commands", color=0xffffff)
             embedVar.add_field(name="NSFW", value="```r34 [tag] \nmodel [phub model]```", inline=False)
@@ -66,6 +94,7 @@ class MyClient(discord.Client):
     async def on_reaction_add(reaction, user):
         emoji = reaction.emoji
         message = reaction.message
+        print(message.content.split(" ")[2])
         if user.bot:
             return
 
@@ -74,39 +103,70 @@ class MyClient(discord.Client):
             return
 
         if emoji == "➕":
-            print("go")
-            fromnunm = int(message.content.split(" ")[1])
-            print(fromnunm)
-            num = 0
-            url = "https://rule34.xxx/index.php?page=post&s=list&tags="+message.content.split(" ")[5]
-            response = requests.get(url)
-            html = response.text
-
-            soup = BeautifulSoup(html, "html.parser")
-            links = soup.findAll("img")
-            for link in links[fromnunm:]:
-                href = str(link.parent.get("href"))
-                print(href)
-                url = "https://rule34.xxx/"+href
+            if message.content.split(" ")[2] == "r34":
+                print("go")
+                fromnunm = int(message.content.split(" ")[1])
+                print(fromnunm)
+                num = 0
+                url = "https://rule34.xxx/index.php?page=post&s=list&tags="+message.content.split(" ")[5]
                 response = requests.get(url)
                 html = response.text
+
+                soup = BeautifulSoup(html, "html.parser")
+                links = soup.findAll("img")
+                for link in links[fromnunm:]:
+                    href = str(link.parent.get("href"))
+                    print(href)
+                    url = "https://rule34.xxx/"+href
+                    response = requests.get(url)
+                    html = response.text
+                    soup = BeautifulSoup(html, "html.parser")
+                    links = soup.findAll("img")
+                    for link in links:
+                        print("WOOOO")
+                        if str(link.get("id")) == "image":
+                                src = str(link.get("src"))
+                                if src.startswith("https://"):
+                                    num+=1
+                                    print(num)
+                                    await message.channel.send(src)
+                                    if num==6:
+                                        msg = await message.channel.send("next "+str(fromnunm+6)+" r34 results for "+message.content.split(" ")[5])
+                                        await msg.add_reaction("➕")
+                                        return
+            else:
+                return
+
+            if message.content.split(" ")[2] == "danbooru":
+                print("go")
+                fromnunm = int(message.content.split(" ")[1])
+                print(fromnunm)
+                num = 0
+                url = "https://danbooru.donmai.us/posts?tags="+message.content.split(" ")[5]
+                response = requests.get(url)
+                html = response.text
+
                 soup = BeautifulSoup(html, "html.parser")
                 links = soup.findAll("img")
                 for link in links:
-                    print("WOOOO")
-                    if str(link.get("id")) == "image":
-                            src = str(link.get("src"))
-                            if src.startswith("https://"):
-                                num+=1
-                                print(num)
-                                await message.channel.send(src)
-                                if num==6:
-                                    msg = await message.channel.send("next "+str(fromnunm+6)+" r34 results for "+message.content.split(" ")[5])
-                                    await msg.add_reaction("➕")
-                                    return
-        else:
-            return
-
+                    href = str(link.parent.parent.get("href"))
+                    print(href)
+                    url = "https://danbooru.donmai.us/"+href
+                    response = requests.get(url)
+                    html = response.text
+                    soup = BeautifulSoup(html, "html.parser")
+                    links = soup.findAll("img")
+                    for link in links:
+                            if str(link.get("id")) == "image":
+                                src = str(link.get("src"))
+                                if src.startswith("https://"):
+                                    num+=1
+                                    print(num)
+                                    await message.channel.send(src)
+                                    if num==6:
+                                        msg = await message.channel.send("next "+str(fromnunm+6)+" danbooru results for "+message.content.split(" ")[5])
+                                        await msg.add_reaction("➕")
+                                        return
     
 
 client = MyClient()
