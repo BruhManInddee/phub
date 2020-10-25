@@ -146,7 +146,7 @@ class MyClient(discord.Client):
 
                 soup = BeautifulSoup(html, "html.parser")
                 links = soup.findAll("img")
-                for link in links:
+                for link in links[fromnunm]:
                     href = str(link.parent.parent.get("href"))
                     print(href)
                     url = "https://danbooru.donmai.us/"+href
