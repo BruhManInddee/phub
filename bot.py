@@ -12,10 +12,10 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 	
-	    if not message.content.startswith("~"):
-		    return
+	if not message.content.startswith("~"):
+	    return
 	
-	    message.content = message.content[1:len(message.content)]
+	message.content = message.content[1:len(message.content)].lower()
 
         if message.content == 'ping':
             await message.channel.send(message.content)
