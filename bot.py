@@ -88,13 +88,12 @@ class MyClient(discord.Client):
 
         if args[0] == "help":
             embedVar = discord.Embed(title="Commands", color=0xffffff)
-            embedVar.add_field(name="NSFW", value="```r34 [tag] \nmodel [phub model]```", inline=False)
+            embedVar.add_field(name="NSFW", value="```r34 [tag]\ndanbooru [tag]\nmodel [phub model]```", inline=False)
             await message.channel.send(embed=embedVar)
     @staticmethod
     async def on_reaction_add(reaction, user):
         emoji = reaction.emoji
         message = reaction.message
-        print(message.content.split(" ")[2])
         if user.bot:
             return
 
@@ -102,8 +101,9 @@ class MyClient(discord.Client):
             
             return
 
+        print(message.content.split(" ")[2])
         if emoji == "➕":
-            if message.content.split(" ")[2] == "r34":
+            if str(message.content.split(" ")[2]) == "r34":
                 print("go")
                 fromnunm = int(message.content.split(" ")[1])
                 print(fromnunm)
@@ -134,10 +134,8 @@ class MyClient(discord.Client):
                                         msg = await message.channel.send("next "+str(fromnunm+6)+" r34 results for "+message.content.split(" ")[5])
                                         await msg.add_reaction("➕")
                                         return
-            else:
-                return
 
-            if message.content.split(" ")[2] == "danbooru":
+            if str(message.content.split(" ")[2]) == "danbooru":
                 print("go")
                 fromnunm = int(message.content.split(" ")[1])
                 print(fromnunm)
@@ -167,6 +165,8 @@ class MyClient(discord.Client):
                                         msg = await message.channel.send("next "+str(fromnunm+6)+" danbooru results for "+message.content.split(" ")[5])
                                         await msg.add_reaction("➕")
                                         return
+
+
     
 
 client = MyClient()
