@@ -10,15 +10,15 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         # don't respond to ourselves
         if message.author == self.user:
-            return
+        	return
 	
 	if not message.content.startswith("~"):
-	    return
+		return
 	
 	message.content = message.content[1:len(message.content)].lower()
 
         if message.content == 'ping':
-            await message.channel.send(message.content)
+        	await message.channel.send(message.content)
 
 client = MyClient()
 client.run(token)
