@@ -18,7 +18,8 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 	
-        if not message.content.startswith("~"):
+        if not message.channel.nsfw:
+            await message.author.send("Put that shit in a nsfw channel bruh")
             return
         
         message.content=message.content[1:len(message.content)].lower()
