@@ -11,9 +11,14 @@ class MyClient(discord.Client):
         # don't respond to ourselves
         if message.author == self.user:
             return
+	
+	    if not message.content.startswith("~"):
+		    return
+	
+	    message.content = message.content[1:len(message.content)]
 
         if message.content == 'ping':
-            await message.channel.send('pong')
+            await message.channel.send(message.content)
 
 client = MyClient()
 client.run(token)
