@@ -17,14 +17,14 @@ async def vid(ctx):
     soup = BeautifulSoup(html, "html.parser")
     links = soup.findAll("a")
     for link in links:
-    href = str(link.get("href"))
-    if href.startswith("/view") and href[-1].isdigit():
-        response = requests.get("https://pornhub.com"+href)
-        html = response.text
-        soup = BeautifulSoup(html, "html.parser")
-        links = soup.findAll('title')
-        sentence = str(link)[7:len(link)-9]+" - https://pornhub.com"+str(href)
-        await ctx.send(sentence)
+        href = str(link.get("href"))
+        if href.startswith("/view") and href[-1].isdigit():
+            response = requests.get("https://pornhub.com"+href)
+            html = response.text
+            soup = BeautifulSoup(html, "html.parser")
+            links = soup.findAll('title')
+            sentence = str(link)[7:len(link)-9]+" - https://pornhub.com"+str(href)
+            await ctx.send(sentence)
 
 bot.run(token)
 print("on")
