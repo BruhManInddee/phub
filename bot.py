@@ -1,15 +1,14 @@
 import os
 import discord
-from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 from discord.ext import commands
 
+token = os.environ.get('token')
 bot = commands.Bot(command_prefix='>')
 
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
 
-bot.run(os.environ['token'])
+bot.run(token)
 print("on")
-print(os.environ['token'])
+print(token)
