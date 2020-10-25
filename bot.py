@@ -10,7 +10,6 @@ class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you horny retards :( ~help"))
-
     
     async def on_message(self, message):
         # don't respond to ourselves
@@ -26,11 +25,6 @@ class MyClient(discord.Client):
         message.content=message.content[1:len(message.content)].lower()
         args = message.content.split(" ")
 
-	if args[0] == "help":
-            embedVar = discord.Embed(title="Commands", color=0xffffff)
-            embedVar.add_field(name="NSFW", value="```r34 [tag] \nmodel [phub model]```", inline=False)
-            await message.channel.send(embed=embedVar)
-	
         if args[0] == 'model':
             url = "https://www.pornhub.com/model/"+args[1]+"/videos"
             await message.channel.send(url)
@@ -63,6 +57,11 @@ class MyClient(discord.Client):
                                         msg = await message.channel.send("first 6 r34 results for "+args[1])
                                         await msg.add_reaction("➕")
                                         return
+
+        if args[0] == "help":
+            embedVar = discord.Embed(title="Commands", color=0xffffff)
+            embedVar.add_field(name="NSFW", value="```r34 [tag] \nmodel [phub model]```", inline=False)
+            await message.channel.send(embed=embedVar)
     @staticmethod
     async def on_reaction_add(reaction, user):
         emoji = reaction.emoji
