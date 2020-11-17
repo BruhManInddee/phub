@@ -17,10 +17,9 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-	message.content=message.content[1:len(message.content)].lower()
         args = message.content.split(" ")
 	
-	if args[0] = s:
+	if args[0].lower() = s:
 		await message.channel.send(args[1,len(args)])
 
 client = MyClient()
