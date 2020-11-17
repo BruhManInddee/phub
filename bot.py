@@ -20,7 +20,7 @@ class MyClient(discord.Client):
         args = message.content.split(" ")
 	
 	if args[0] == "s":
-		await message.channel.send(args[1,len(args)])
+	    await message.channel.send(args[1,len(args)])
 
 client = MyClient()
 client.run(token)
