@@ -20,8 +20,8 @@ class MyClient(discord.Client):
         args = message.content.split(" ")
 
         if args[0].lower()  == "~s":
-            print(" ")
-            await message.channel.send(args[1:len(args)])
+            result = ' '.join(str(i) for i in args[1:len(args)]) 
+            await message.channel.send(result)
 
 client = MyClient()
 client.run(token)
