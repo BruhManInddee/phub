@@ -20,9 +20,9 @@ class MyClient(discord.Client):
         args = message.content.split(" ")
 
         if args[0]  == "s":
-            await client.delete_message(message)
             result = ' '.join(str(i) for i in args[1:len(args)]) 
             await message.channel.send(result)
+            await message.delete()
 
 client = MyClient()            
 client.run(token)
