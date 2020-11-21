@@ -19,7 +19,7 @@ class MyClient(discord.Client):
 
         args = message.content.split(" ")
 
-        if args[0]  == "s":
+        if args[0].lower()  == "~s":
             print(" ")
             await message.channel.send(args[1,len(args)])
 
