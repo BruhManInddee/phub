@@ -18,9 +18,10 @@ class MyClient(discord.Client):
             return
 
         args = message.content.split(" ")
-	
-	if args[0] == "s":
-	    await message.channel.send(args[1,len(args)])
+
+        if args[0]  == "s":
+            print(" ")
+            await message.channel.send(args[1,len(args)])
 
 client = MyClient()
 client.run(token)
