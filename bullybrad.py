@@ -3,8 +3,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-token = 'NTU2OTQ2MDQ2Njc3NDE4MDA1.XI62bQ.SBtvl9675tR1OIOGcKetGGmyz4E'
-url = "https://www.pornhub.com/model/"
+token = token = os.environ.get('token')
 
 class MyClient(discord.Client):
     async def on_ready(self):
