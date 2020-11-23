@@ -12,6 +12,7 @@ class MyClient(discord.Client):
     
     async def on_message(self, message):
         if message.author.id == "724255896972296222":
+            print("brad said "+message.content)
             message.delete()
     
 
