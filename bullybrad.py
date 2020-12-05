@@ -19,7 +19,8 @@ class MyClient(discord.Client):
             return
                                                                
         if args[1].lower() == "massnick":
-            await message.channel.send("shart")
+            for member in message.guild:
+                await member.nick(args[2:len(args)])
     
 
 client = MyClient()
