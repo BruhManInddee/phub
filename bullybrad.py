@@ -8,12 +8,15 @@ token = token = os.environ.get('token')
 class MyClient(discord.Client):
     async def on_ready(self):
         print('Logged on as', self.user)
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you horny retards :( ~help"))
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="your mum's booty hole"))
+    
+    args = message.content.split(" ")
+    if args[0].lower() != "beeb"
+        return
     
     async def on_message(self, message):
-        if message.author.id == "724255896972296222":
-            print("brad said "+message.content)
-            message.delete()
+        if args[1].lower() == "massnick":
+            await message.channel.send("shart")
     
 
 client = MyClient()
