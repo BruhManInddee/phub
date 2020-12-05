@@ -20,6 +20,7 @@ class MyClient(discord.Client):
                                                                
         if args[1].lower() == "massnick":
             for member in message.guild.members:
+                print("cock")
                 await member.edit(nick=str(args[2:]))
     
 
