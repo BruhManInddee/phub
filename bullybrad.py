@@ -19,7 +19,7 @@ class MyClient(discord.Client):
             return
                                                                
         if args[1].lower() == "massnick":
-            for member in message.guild:
+            for member in message.guild.members:
                 await member.nick(args[2:len(args)])
     
 
