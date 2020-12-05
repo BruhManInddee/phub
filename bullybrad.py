@@ -11,7 +11,7 @@ class MyClient(discord.Client):
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="your mum's booty hole"))
     
     args = message.content.split(" ")
-    if args[0].lower() != "beeb"
+    if args[0].lower() != "beeb":
         return
     
     async def on_message(self, message):
