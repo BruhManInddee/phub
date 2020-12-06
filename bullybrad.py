@@ -18,10 +18,9 @@ class MyClient(discord.Client):
         if args[0].lower() != "beeb":
             return
                                                                
-        if args[1].lower() == "massnick":
-            for member in message.guild.members:
-                print(message.guild.members)
-                await member.edit(nick=str(args[2:]))
+        if args[1].lower() == "lyrics":
+            if args[2].lower() == "spotify":
+                await message.channel.send(message.author.Spotify.title)
     
 
 client = MyClient()
